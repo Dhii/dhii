@@ -4,8 +4,9 @@
 
 To research, develop and propagate quality software and means of raising
 the quality of software development throughout communities by applying sustainable and
-effective principles and standards to software development, increasing public
-awareness and promoting entities that represent a similar philosophy.
+effective principles and standards to software development and related
+organizational and operational processes, increasing public awareness and
+promoting entities that represent a similar philosophy.
 
 ## Why?
 

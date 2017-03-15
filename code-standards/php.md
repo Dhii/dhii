@@ -37,7 +37,14 @@ rules:
     versioning scheme. In addition, packages must also comply with the rules
     of the [caret operator][caret-operator].
 
-5.  Use proper documentation.
+5.  Keep a changelog.
+
+    It is important that consumers can at a glance understand what change
+    between versions. For this reason, a changelog must be maintained.
+    At present, the only thing resembling a standard is at [keepachangelog.com].
+    Therefore, following these guidelines is required. Also, see (7) below.
+
+6.  Use proper documentation.
 
     All previously undocumented characteristics of a method must be documented
     with every declaration. All declarations of all class-level entities,
@@ -49,7 +56,7 @@ rules:
     at the time of the release with an actual version number. Also, the use of
     [Markdown] in docblocks is allowed and encouraged.
 
-6.  Use the right tools.
+7.  Use the right tools.
 
     Tools such as Composer, Git, PHP CS Fixer, PHPUnit have become an industry
     standard, and their use is highly encouraged. Use of any other tools
@@ -74,6 +81,7 @@ rules:
 [psr-2-properties]:         http://www.php-fig.org/psr/psr-2/#properties
 [caret-operator]:           https://getcomposer.org/doc/articles/versions.md#caret
 [Markdown]:                 https://daringfireball.net/projects/markdown/syntax
+[keepachangelog.com]:       http://keepachangelog.com
 
 [dhii/php-cs-fixer-config]: https://packagist.org/packages/dhii/php-cs-fixer-config
 

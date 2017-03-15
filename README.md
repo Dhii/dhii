@@ -1,6 +1,6 @@
 # Dhii
 
-Description of the company
+An open source collective initiative.
 
 ## Sections
 

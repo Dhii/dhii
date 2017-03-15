@@ -8,7 +8,7 @@ reading our code instills a sense of tranquility, and cures many diseases.
 
 ## Standards
 
-We will develop standards an supporting code and docs for you, making your
+We will develop standards and supporting code and docs for you, making your
 application components inter-operable - even if you can't see why it's necessary
 right now. Let's make everything work together!
 
@@ -34,5 +34,5 @@ are many great projects out there dying to be brought to life.
 
 Got an idea, but not sure what to do with it? Whether just a hunch or a
 developed plan, you can share it with us, and we will try and help you
-make it happen. Join our network of like-minded specialists, enterpreneurs,
+make it happen. Join our network of like-minded specialists, entrepreneurs,
 and housewives.

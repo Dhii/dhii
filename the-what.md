@@ -8,7 +8,7 @@ reading our code instills a sense of tranquility, and cures many diseases.
 
 ## Standards
 
-We will develop standards an supporting code and docs for you, making your
+We will develop standards and supporting code and docs for you, making your
 application components inter-operable - even if you can't see why it's necessary
 right now. Let's make everything work together!
 

@@ -6,7 +6,7 @@ rules:
 
     This is done partly by relying on the [dhii/php-cs-fixer-config] package.
     However, because the term [used][psr-2-properties] in relation to the
-    underscore prefix for private/protected methods is "SHOULD NOT", this prefix.
+    underscore prefix for private/protected methods is "SHOULD NOT", this prefix
     MAY be used. This is encouraged, and lets us avoid any potential conflicts
     in method names, which is especially important given our layered
     architecture.

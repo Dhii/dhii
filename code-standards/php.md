@@ -39,7 +39,7 @@ rules:
 
 5.  Keep a changelog.
 
-    It is important that consumers can at a glance understand what change
+    It is important that consumers can at a glance understand what changed
     between versions. For this reason, a changelog must be maintained.
     At present, the only thing resembling a standard is at [keepachangelog.com].
     Therefore, following these guidelines is required. Also, see (7) below.

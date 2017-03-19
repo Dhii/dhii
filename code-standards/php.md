@@ -72,6 +72,9 @@ rules:
     "PackageName" with the package namespace, and finally "Package" with the
     package title.
 
+    Also, to speed things up, [dhii/bootstrap] is available for very fast
+    and standards-compliant way to create new Dhii projects.
+
 8.  Compartmentalization, encapsulation, separation.
 
     A package does one thing. There can be packages, which exist solely for the purpose
@@ -232,6 +235,7 @@ rules:
 [keepachangelog.com]:       http://keepachangelog.com
 
 [dhii/php-cs-fixer-config]: https://packagist.org/packages/dhii/php-cs-fixer-config
+[dhii/bootstrap]:           https://packagist.org/packages/dhii/bootstrap
 
 [.codeclimate.yml]:         ../configs/.codeclimate.yml
 [.gitattributes]:           ../configs/.gitattributes

@@ -86,7 +86,7 @@ rules:
     big it is. The aim is to, as much as possible, allow developers to use only the code
     that they need - by splitting each solution into layers, and providing those layers
     in a separate and granular fashion. Even in a large mechanism, the smallest of
-    screws is invaluable, if it it has been designed for usability, created for
+    screws is invaluable, if it has been designed for usability, created for
     functionality, and tested for durability.
 
     For this reason, it is very important that solutions are broken down into the

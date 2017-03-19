@@ -92,7 +92,7 @@ rules:
     see below), that package MUST be explicitly declared as a dependency -
     even if it is already a dependency of one of the immediate dependencies.
 
-    ### Interface Layer
+    #### Interface Layer
 
     No functionality whatsoever may go into this layer. Interface packages
     may depend on other interface packages. Depending on packages containing
@@ -102,7 +102,7 @@ rules:
     hierarchy. Such packages names MUST be suffixed with `-interface` -
     regardless of the amount of interfaces declared.
 
-    ### Abstract Layer
+    #### Abstract Layer
 
     No concrete implementations may go into this layer. Only abstract classes
     are allowed. All methods must not be declared as `public`. Static
@@ -128,7 +128,7 @@ rules:
     of any particular use-case, environment, or application. Such package names
     MUST be suffixed with `-abstract`.
 
-    ### Base Layer (optional)
+    #### Base Layer (optional)
 
     This level allows creation of concrete functionality, declaration of
     public methods, and concreate classes. However, this is done only
@@ -155,7 +155,7 @@ rules:
     implementation MUST be provided alongside. Such package names MUST be
     suffixed with `-base`.
 
-    ### Concrete Layer
+    #### Concrete Layer
 
     This level SHOULD be completely or partly aware of its environment,
     use-case, or application. It MAY consume code that is not immediately
@@ -172,7 +172,7 @@ rules:
     level, as long as they are descriptive and readable. However, these names
     SHOULD reflect the use-case of the package.
 
-    ### Also
+    #### Also
 
     Both the aim and a direct consequence of the described layer system results
     in a well defined, flexible, and very predictable class hierarchy tree.

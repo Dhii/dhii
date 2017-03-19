@@ -141,11 +141,11 @@ rules:
     `abstract` even if they have enough data or functionality to be
     instantiated. Such classes MUST be prefixed with the word "Base",
     in addition to the PSR naming conventions mentioned earlier in this
-    document. This means that for a base class which excents
+    document. This means that for a base class which extends
     `AbstractTranslator` and is designed as a base for a `Translator`
     class implementing `TranslatorInterface`, the base abstract class
     SHOULD be named `AbstractBaseTranslator`. One exception to this rule
-    is for exception classes, i.e. those excending `Exception`. Such
+    is for exception classes, i.e. those extending `Exception`. Such
     classes SHOULD be declared as concrete, and the name SHOULD have the
     concrete form, such as `class ValidationException extends
     AbstractValidationException implements ValidationExceptionInterface`.

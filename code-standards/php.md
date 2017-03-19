@@ -72,7 +72,7 @@ rules:
     "PackageName" with the package namespace, and finally "Package" with the
     package title.
 
-    Also, to speed things up, [dhii/bootstrap] is available for very fast
+    Also, to speed things up, [dhii/bootstrap] is available for a very fast
     and standards-compliant way to create new Dhii projects.
 
 8.  Compartmentalization, encapsulation, separation.

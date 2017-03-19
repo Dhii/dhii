@@ -2,17 +2,24 @@
 Packages complying with the Dhii standard for PHP code must follow the below
 rules:
 
-1.  Maintain complete compatibility with the [PSR-1] and [PSR-2] standards.
+1.  Complete compatibility with the [PSR-1] and [PSR-2] standards MUST be maintained.
 
-    This is done partly by relying on the [dhii/php-cs-fixer-config] package.
+    This MAY be done partly by relying on the [dhii/php-cs-fixer-config] package.
     However, because the term [used][psr-2-properties] in relation to the
-    underscore prefix for private/protected methods is "SHOULD NOT", this prefix
-    MAY be used. This is encouraged, and lets us avoid any potential conflicts
-    in method names, which is especially important given our layered
-    architecture. Classes, interfaces, and traits MUST obey the [PSR naming
-    conventions][psr-naming-conventions].
+    underscore prefix for private/protected methods is "SHOULD NOT", that prefix
+    is OPTIONAL. This is encouraged, and allows avoiding any potential conflicts
+    in method names, which is especially important given the layered
+    architecture.
+    
+2.  Classes, interfaces, and traits MUST obey the [PSR naming conventions][psr-naming-conventions].
 
-2.  Use other existing standards wherever possible.
+    This allowes the above, collectively called "classes" due to existing
+    in the same symbol space and sharing many characteristics, to be
+    predictably named, and vice-versa - to have some of their
+    characteristics be obvious from the name of the class and concequently
+    the filename.
+
+3.  Other existing standards SHOULD be used, when possible.
 
     Standards are scarce, and creating more is one of the main goals of this
     organization. However, because interoperability is one of our main
@@ -20,16 +27,16 @@ rules:
     or other parties - effort will be made to use it. Often this is done by
     extending or otherwise adapting the standard.
 
-3.  Publish generic interfaces separately.
+4.  Generic interfaces MUST be published separately from any implementation.
 
     Often developers who mean well would create interfaces for their
-    implementations. Unfortunately, publishing these interfaces _together_
+    implementations. Unfortunately, publishing these interfaces together
     with the implementations defeats the point of having interfaces in the
     first place, as it makes it impossible to provide an alternative without
     relying on the implementing package itself. Therefore, interfaces with
-    non-application-specific methods must be published in separate packages.
+    non-application-specific methods have to be published in separate packages.
 
-4.  Follow the [SemVer] scheme.
+5.  Releases MUST follow the [SemVer] scheme.
 
     Having a transparent and predictable pattern for release versions is
     extremely important for all software. For standards, the value of
@@ -38,14 +45,14 @@ rules:
     versioning scheme. In addition, packages must also comply with the rules
     of the [caret operator][caret-operator].
 
-5.  Keep a changelog.
+6.  A changelog MUST be kept.
 
     It is important that consumers can at a glance understand what changed
     between versions. For this reason, a changelog must be maintained.
     At present, the only thing resembling a standard is at [keepachangelog.com].
     Therefore, following these guidelines is required. Also, see (7) below.
 
-6.  Use proper documentation.
+7.  Documentation MUST be included.
 
     All previously undocumented characteristics of a method must be documented
     with every declaration. All declarations of all class-level entities,
@@ -57,7 +64,7 @@ rules:
     at the time of the release with an actual version number. Also, the use of
     [Markdown] in docblocks is allowed and encouraged.
 
-7.  Use the right tools.
+8.  Adequate tools SHOULD be used.
 
     Tools such as Composer, Git, PHP CS Fixer, PHPUnit have become an industry
     standard, and their use is highly encouraged. Use of any other tools
@@ -75,7 +82,7 @@ rules:
     Also, to speed things up, [dhii/bootstrap] is available for a very fast
     and standards-compliant way to create new Dhii projects.
 
-8.  Compartmentalization, encapsulation, separation.
+9.  Logic layers MUST be separated into packages.
 
     A package does one thing. There can be packages, which exist solely for the purpose
     of grouping other packages. There can be packages that only add a very small
@@ -97,112 +104,134 @@ rules:
 
     #### Interface Layer
 
-    No functionality whatsoever may go into this layer. Interface packages
-    may depend on other interface packages. Depending on packages containing
-    functionality is strongly discouraged. Tests must verify that classes
+    Functionality SHALL NOT go into this layer. Interface packages
+    MAY depend on other interface packages. Depending on packages containing
+    functionality is NOT RECOMMENDED. Tests MUST verify that classes
     implementing the interfaces can be created, and that they implement all
     other required interfaces - which may be a consequence of an interface
-    hierarchy. Such packages names MUST be suffixed with `-interface` -
+    hierarchy. Such package names MUST be suffixed with `-interface` -
     regardless of the amount of interfaces declared.
 
     #### Abstract Layer
 
-    No concrete implementations may go into this layer. Only abstract classes
-    are allowed. All methods must not be declared as `public`. Static
-    methods are advised against to preserve IoC principle. Methods which
-    are meant to create instances must be `abstract`. A very high standard
+    Concrete implementations SHALL NOT go into this layer. Only abstract classes
+    are allowed. Methods MUST NOT be declared as `public`. Including static
+    methods is NOT RECOMMENDED to preserve the IoC principle. Methods which
+    are meant to create instances MUST be `abstract`. A very high standard
     of granularity should be maintained. Only generic functionality can be
     implemented at this layer. Abstract classes MUST NOT implement interfaces,
-    or declare a public constructor. If descendants are anticipated to
+    and MUST NOT declare a public constructor. If descendants are anticipated to
     implement specific interfaces, its methods or constants MUST NOT be
-    referred to as those belonging to the abstract class, i.e. by using the
-    `static` keyword, or in any other way. Instead, only the protected
-    methods of the abstract class itself may be invoked. Interface constants
+    referred to as if belonging to the abstract class, i.e. by using the
+    `static` keyword, or in any other way. Instead, the protected
+    methods of the abstract class itself SHOULD be invoked. Interface constants
     MUST be referred to by using their fully qualified name, i.e.
-    `Interface::CONSTANT`. It is possible to use the `use` keyword to alias
-    other classes and interfaces to shorter symbols. No other functionality,
-    except for that in the package itself and its dependencies, can be
-    assumed. The exception to this rule is typechecking, such as in cases
-    where additional processing should be performed for specific types,
-    or when certain exceptions need to be handled. This is because checking
-    for types, explicitly or for exception handling, do not cause fatal
-    errors if the checked type is unavailable, i.e. the existence of the
-    type itself is not required. This layer MUST remain completely agnostic
-    of any particular use-case, environment, or application. Such package names
-    MUST be suffixed with `-abstract`.
+    `MyInterface::CONSTANT`. Implementations MAY use the `use` keyword to alias
+    other classes and interfaces to shorter symbols. Other functionality,
+    except for that in the package itself and its dependencies, SHOULD NOT be
+    assumed, with the exception of typechecking, such as in cases
+    where additional processing is needed for specific types,
+    or when certain exceptions need to be handled. In these and only these cases,
+    implementations MAY refer to the types being tested against without
+    declaring their packages to be dependencies of the implementing package.
+    This is because checking for types, explicitly or for exception handling,
+    does not cause fatal errors if the checked type is unavailable, i.e.
+    the existence of the type itself is not required. This layer is meant
+    to be remain completely agnostic of any particular use-case, environment,
+    or application. Such package names MUST be suffixed with `-abstract`.
 
     #### Base Layer (optional)
 
-    This level allows creation of concrete functionality, declaration of
-    public methods, and concreate classes. However, this is done only
+    This level allows creation of concrete functionality. Implementations
+    MAY declare public methods and concreate classes. However, this is done only
     for the purpose of saving time when coding concrete implementations
     that frequently use the most common functionality, such as interface
     (public) methods, or exceptions. Classes SHOULD be declared as
     `abstract` even if they have enough data or functionality to be
     instantiated. Such classes MUST be prefixed with the word "Base",
     in addition to the PSR naming conventions mentioned earlier in this
-    document. This means that for a base class which extends
+    document. This means that for a class which extends
     `AbstractTranslator` and is designed as a base for a `Translator`
-    class implementing `TranslatorInterface`, the base abstract class
-    SHOULD be named `AbstractBaseTranslator`. One exception to this rule
-    is for exception classes, i.e. those extending `Exception`. Such
-    classes SHOULD be declared as concrete, and the name SHOULD have the
+    class implementing `TranslatorInterface`, the suitable name for a
+    base abstract class is `AbstractBaseTranslator`. One exception to this rule
+    is for exception classes, i.e. those extending `Exception, which will be
+    instantiated by factory methods`. Such
+    classes MUST be declared as concrete, and the name MUST have the
     concrete form, such as `class ValidationException extends
     AbstractValidationException implements ValidationExceptionInterface`.
     This level is the right place for factory methods which create exceptions,
     implementing `abstract` methods declared in the Abstract layer. This
-    layer SHOULD remain agnostic of any use-case, environment, or application,
-    consuming only the code declared either directly in the package,
-    or in one of its concrete dependencies. All implementations SHOULD assume
+    layer is meant to remain agnostic of any use-case, environment, or
+    application, consuming only the code declared either directly in the package,
+    or in one of its dependencies. All concrete implementations SHOULD assume
     instance immutability. For cases where mutability is desired, an immutable
     implementation MUST be provided alongside. Such package names MUST be
     suffixed with `-base`.
 
     #### Concrete Layer
 
-    This level SHOULD be completely or partly aware of its environment,
+    This level is intended be completely or partly aware of its environment,
     use-case, or application. It MAY consume code that is not immediately
     a part of the package or one of its dependencies. This is particularly
     useful when creating extensions for frameworks and engines, and is
     allowed, provided that the documentation clearly states its intended
     application. Concrete implementations MUST contain all logic needed
-    for instances to function properly. Abstract classes are allowed  in order
+    for instances to function properly. Abstract classes MAY be included in order
     to maintain SoC, but MUST NOT use their own public API, even for methods
     declared directly or inherited from base classes. Explicit use of DI
-    container instances is allowed on this level, and on no other level.
+    container instances is OPTIONAL on this level, and on no other level.
     This is because all types and the concrete use-case is known here.
-    Do not expect non-public methods to "chain", unless their specific purpose
-    is to return the instance.
+    Implementations MUST NOT expect non-public methods to "chain",
+    unless their specific purpose is to return the instance.
     There is no restriction with regard to repository/package names on this
     level, as long as they are descriptive and readable. However, these names
     SHOULD reflect the use-case of the package.
 
     #### Also
 
-    Both the aim and a direct consequence of the described layer system results
-    in a well defined, flexible, and very predictable class hierarchy tree.
+    Both the aim and a direct consequence of the described layer system is
+    a well defined, flexible, and very predictable class hierarchy tree.
     This tree follows these principles:
 
-    -   If you are calling a public method of a dependency, you MUST be consuming an interface.
-        This means that you can only call a public method which doesn't exist in an interface
-        if you are guaranteed to receive the specific concrete type.
-    -   If you are declaring a concrete class, the use-case is known. This is a "leaf" class.
-    -   You SHOULD NOT extend a concrete class. That class's API or internal
-        behaviour is subject to change. Depending on it may result in the
-        invalidation of the whole class branch.
-    -   Instead, you SHOULD extend an abstract class. Abstract functionality
-        is aimed to be as generic as possible, and is much less subject to
-        change. Such abstract classes are "branch" classes.
-    -   For each "leaf" class, there MUST be at least 1 "branch" class,
-        and that "leaf" class MUST implement at least 1 interface.
+    -   Implementations invoking a public method of a dependency MUST be
+        consuming an interface.
 
-9.  Transparent naming.
+        This means that you may only call a public method which is not
+        defined by any interface explicitly implemented by the instance's
+        class if you are guaranteed to operate on the specific concrete
+        type of the instance.
+
+    -   Implementations SHOULD NOT extend concrete classes.
+    
+        When declaring a concrete class, the use-case is known. Such a
+        class is known as "leaf", and its API or internal behaviour is
+        subject to high churn. Depending on it may result in the
+        invalidation of the whole class' descendant hierarchy.
+
+    -   Implementations SHOULD extend an abstract class.
+    
+        Abstract functionality is aimed to be as generic as possible,
+        and is subject to much less churn. Such abstract classes are
+        known as "branch" classes. They gradually specialize functionality
+        from most generic to more specific changes.
+
+    -   An implementation of a "leaf" class MUST extend at least 1 "branch"
+        class and MUST implement at least 1 interface.
+
+        This ensures that other implementations can be created without
+        having to implement a public API, without explicitly closing
+        access to functionality, and without code duplication by
+        extending an abstract class containing the necessary code.
+        Moreover, this ensures that consumers can fulfill the requirement
+        of having to consume an interface when invoking public methods.
+
+10.  Transparent naming.
 
     Interfaces SHOULD be named to reflect the essence of the functionality
     which they aim to expose. Abstract class names SHOULD correlate with the
     names of the interfaces, which their descendants aim to implement.
-    There is no restriction on the name of the concrete classes, as long as
-    those names are descriptive and readable. Example:
+    Names of concrete classes SHOULD be descriptive and readable, but
+    otherwise are not restricted. Example:
 
     -   `interface TranslationCapableInterface` declares `public function translate()`.
     -   `interface TranslatorInterface extends TranslationCapableInterface`.
@@ -210,21 +239,24 @@ rules:
     -   `class Translator extends AbstractTranslator implements TranslatorInterface`
         declares `public function translate()`, which uses `_translate()`.
 
-10. Adequate testing.
+11. Adequate testing.
 
-    Test as much code as possible, aiming for complete coverage. Test only the
-    code in the repository containing the tests. Do not declare tests as "unit
-    tests" unless you are absolutely sure that they test units in complete
-    isolation. For test classes namespaces, use `Vendor\Package\FuncTest`
-    and `Vendor\Package\UnitTest` base namespaces. Try to avoid declaring stub
-    classes, but if you must, then use the `Vendor\Package\TestStub` base
-    namespace. Test protected methods as well as public ones; if there is
-    functionality, then it deserves a test. When testing getters and setters,
-    do not test protected properties. Instead, test that the values returned
+    Implementation SHOULD aim for complete test coverage, and SHOULD only test
+    code of the repository containing the tests. Tests SHOULD NOT be
+    declared as "unit tests" unless they test units in complete
+    isolation. Test classes SHOULD be declared in a base namespace of the form
+    `<Vendor>\<Package>\FuncTest` and `<Vendor>\<Package>\UnitTest`, where
+    `<Vendor>` represents the name of the package's vendor or author, and
+    `<Package>` represents the name of the package. Packages SHOULD avoid
+    declaring stub classes. if declared, tuch classes MUST use a base 
+    namespace of the form `<Vendor>\<Package>\TestStub`. Protected methods
+    SHOULD be tested as well as public ones, which is true of any functionality
+    Tests for getters and setters SHOULD NOT test protected properties;
+    instead, such tests SHOULD test that the values returned
     by the getters are predicted by those set by the setters. Setters and
-    getters are not required to read or write to any specific location, as long
-    as value integrity is preserved. Remember: protected methods are an API
-    too, but for descendants instead of external consumers.
+    getters are not guaranteed to read or write to/from any specific location,
+    as long as value integrity is preserved. Remember: protected methods
+    are an API too, but for descendants instead of external consumers.
 
 
 

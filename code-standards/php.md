@@ -9,7 +9,8 @@ rules:
     underscore prefix for private/protected methods is "SHOULD NOT", this prefix
     MAY be used. This is encouraged, and lets us avoid any potential conflicts
     in method names, which is especially important given our layered
-    architecture.
+    architecture. Classes, interfaces, and traits MUST obey the [PSR naming
+    conventions][psr-naming-conventions].
 
 2.  Use other existing standards wherever possible.
 
@@ -79,6 +80,7 @@ rules:
 [PSR-1]:                    http://www.php-fig.org/psr/psr-1/
 [PSR-2]:                    http://www.php-fig.org/psr/psr-2/
 [psr-2-properties]:         http://www.php-fig.org/psr/psr-2/#properties
+[psr-naming-conventions]:   http://www.php-fig.org/bylaws/psr-naming-conventions/
 [caret-operator]:           https://getcomposer.org/doc/articles/versions.md#caret
 [Markdown]:                 https://daringfireball.net/projects/markdown/syntax
 [keepachangelog.com]:       http://keepachangelog.com

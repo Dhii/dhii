@@ -181,7 +181,9 @@ rules:
     in a well defined, flexible, and very predictable class hierarchy tree.
     This tree follows these principles:
 
-    -   If you are calling a public method, you MUST be consuming an interface.
+    -   If you are calling a public method of a dependency, you MUST be consuming an interface.
+        This means that you can only call a public method which doesn't exist in an interface
+        if you are guaranteed to receive the specific concrete type.
     -   If you are declaring a concrete class, the use-case is known. This is a "leaf" class.
     -   You SHOULD NOT extend a concrete class. That class's API or internal
         behaviour is subject to change. Depending on it may result in the

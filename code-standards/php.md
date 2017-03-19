@@ -171,6 +171,8 @@ rules:
     declared directly or inherited from base classes. Explicit use of DI
     container instances is allowed on this level, and on no other level.
     This is because all types and the concrete use-case is known here.
+    Do not expect non-public methods to "chain", unless their specific purpose
+    is to return the instance.
     There is no restriction with regard to repository/package names on this
     level, as long as they are descriptive and readable. However, these names
     SHOULD reflect the use-case of the package.

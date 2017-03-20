@@ -1,6 +1,7 @@
 # PHP Code Standards
-The words "MUST", "SHOULD", "MAY", "OPTIONAL" and "REQUIRED" in used in this
-document are to be interpreted as described in [RFC 2119].
+The words "MUST", "SHOULD", "MAY", "OPTIONAL" and "REQUIRED", as well as phrases
+"MUST NOT", "SHALL NOT" and "SHOULD NOT", that are used in this document
+are to be interpreted as described in [RFC 2119].
 
 Packages complying with the Dhii standard for PHP code must follow the below
 rules. 

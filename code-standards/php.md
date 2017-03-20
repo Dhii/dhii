@@ -1,6 +1,9 @@
 # PHP Code Standards
+The words "MUST", "SHOULD", "MAY", "OPTIONAL" and "REQUIRED" in used in this
+document are to be interpreted as described in [RFC 2119].
+
 Packages complying with the Dhii standard for PHP code must follow the below
-rules:
+rules. 
 
 1.  Complete compatibility with the [PSR-1] and [PSR-2] standards MUST be maintained.
 
@@ -269,6 +272,7 @@ rules:
 [caret-operator]:           https://getcomposer.org/doc/articles/versions.md#caret
 [Markdown]:                 https://daringfireball.net/projects/markdown/syntax
 [keepachangelog.com]:       http://keepachangelog.com
+[RFC 2119]:                 https://www.ietf.org/rfc/rfc2119.txt
 
 [dhii/php-cs-fixer-config]: https://packagist.org/packages/dhii/php-cs-fixer-config
 [dhii/bootstrap]:           https://packagist.org/packages/dhii/bootstrap

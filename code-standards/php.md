@@ -20,7 +20,7 @@ rules.
     This allows the above, collectively called "classes" due to existing
     in the same symbol space and sharing many characteristics, to be
     predictably named, and vice-versa - to have some of their
-    characteristics be obvious from the name of the class and concequently
+    characteristics be obvious from the name of the class and consequently
     the filename.
 
 3.  Other existing standards SHOULD be used, when possible.

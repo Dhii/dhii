@@ -45,33 +45,33 @@ rules.
     Having a transparent and predictable pattern for release versions is
     extremely important for all software. For standards, the value of
     transparency and predictability cannot be overrated. Therefore, all
-    packages complying with this specification must follow the semantic
+    packages complying with this specification MUST follow the semantic
     versioning scheme. In addition, packages must also comply with the rules
     of the [caret operator][caret-operator].
 
 6.  A changelog MUST be kept.
 
     It is important that consumers can at a glance understand what changed
-    between versions. For this reason, a changelog must be maintained.
+    between versions. For this reason, a changelog MUST be maintained.
     At present, the only thing resembling a standard is at [keepachangelog.com].
-    Therefore, following these guidelines is required. Also, see (7) below.
+    Therefore, following these guidelines is REQUIRED. Also, see (7) below.
 
 7.  Documentation MUST be included.
 
-    All previously undocumented characteristics of a method must be documented
+    All previously undocumented characteristics of a method MUST be documented
     with every declaration. All declarations of all class-level entities,
-    be it methods, properties, constants etc, must have at least the type
-    and `@since` version documented. Including the description is also
-    encouraged, although not strictly required. In all instances, be it
+    be it methods, properties, constants etc, MUST have at least the type
+    and `@since` version documented. The description MAY be included, and this
+    is encouraged. In all instances, be it
     code or otherwise, the string "\[*next-version*\]" represents the unknown
-    version of the next release. This gets replaced by package maintainers
-    at the time of the release with an actual version number. Also, the use of
-    [Markdown] in docblocks is allowed and encouraged.
+    version of the next release. This allows package maintainers to replace such placeholders
+    at the time of the release with an actual version number. [Markdown]
+    MAY be used in descriptions, and this is also encouraged.
 
 8.  Adequate tools SHOULD be used.
 
     Tools such as Composer, Git, PHP CS Fixer, PHPUnit have become an industry
-    standard, and their use is highly encouraged. Use of any other tools
+    standard, and their use is RECOMMENDED. Use of any other tools
     is also welcome, provided that they are useful for the case, and are
     a development dependency.
 
@@ -84,7 +84,7 @@ rules.
     package title.
 
     Also, to speed things up, [dhii/bootstrap] is available for a very fast
-    and standards-compliant way to create new Dhii projects.
+    and standards-compliant way to create new projects.
 
 9.  Logic layers MUST be separated into packages.
 
@@ -112,8 +112,9 @@ rules.
     MAY depend on other interface packages. Depending on packages containing
     functionality is NOT RECOMMENDED. Tests MUST verify that classes
     implementing the interfaces can be created, and that they implement all
-    other required interfaces - which may be a consequence of an interface
-    hierarchy. Such package names MUST be suffixed with `-interface` -
+    other required *immediate* interfaces. Tests MAY also verify that other
+    interfaces resulting from an interface hierarchy are inherited.
+    Such package names MUST be suffixed with `-interface` -
     regardless of the amount of interfaces declared.
 
     #### Abstract Layer
@@ -121,8 +122,9 @@ rules.
     Concrete implementations SHALL NOT go into this layer. Only abstract classes
     are allowed. Methods MUST NOT be declared as `public`. Including static
     methods is NOT RECOMMENDED to preserve the IoC principle. Methods which
-    are meant to create instances MUST be `abstract`. A very high standard
-    of granularity should be maintained. Only generic functionality can be
+    are meant to create instances MUST be `abstract`, unless implemented
+    in an entity, the purpose of which is specifically to create instances. A very
+    high standard of granularity needs to be maintained. Only generic functionality can be
     implemented at this layer. Abstract classes MUST NOT implement interfaces,
     and MUST NOT declare a public constructor. If descendants are anticipated to
     implement specific interfaces, its methods or constants MUST NOT be
@@ -140,11 +142,12 @@ rules.
     declaring their packages to be dependencies of the implementing package.
     This is because checking for types, explicitly or for exception handling,
     does not cause fatal errors if the checked type is unavailable, i.e.
-    the existence of the type itself is not required. This layer is meant
-    to be remain completely agnostic of any particular use-case, environment,
+    the existence of the type itself is not a requirement. In such cases,
+    declaring such dependencies as dev dependencies is RECOMMENDED. This layer is meant
+    to remain completely agnostic of any particular use-case, environment,
     or application. Such package names MUST be suffixed with `-abstract`.
 
-    #### Base Layer (optional)
+    #### Base Layer
 
     This level allows creation of concrete functionality. Implementations
     MAY declare public methods and concreate classes. However, this is done only
@@ -158,12 +161,12 @@ rules.
     `AbstractTranslator` and is designed as a base for a `Translator`
     class implementing `TranslatorInterface`, the suitable name for a
     base abstract class is `AbstractBaseTranslator`. One exception to this rule
-    is for exception classes, i.e. those extending `Exception, which will be
-    instantiated by factory methods`. Such
+    is for exception classes, i.e. those extending `Exception`, which will be
+    instantiated by factory methods. Such
     classes MUST be declared as concrete, and the name MUST have the
     concrete form, such as `class ValidationException extends
     AbstractValidationException implements ValidationExceptionInterface`.
-    This level is the right place for factory methods which create exceptions,
+    This level is the right place for factory methods which create exceptions and other instances,
     implementing `abstract` methods declared in the Abstract layer. This
     layer is meant to remain agnostic of any use-case, environment, or
     application, consuming only the code declared either directly in the package,
@@ -178,9 +181,9 @@ rules.
     use-case, or application. It MAY consume code that is not immediately
     a part of the package or one of its dependencies. This is particularly
     useful when creating extensions for frameworks and engines, and is
-    allowed, provided that the documentation clearly states its intended
+    allowed, in which case the documentation MUST clearl state its intended
     application. Concrete implementations MUST contain all logic needed
-    for instances to function properly. Abstract classes MAY be included in order
+    for instances to function as intended. Abstract classes MAY be included in order
     to maintain SoC, but MUST NOT use their own public API, even for methods
     declared directly or inherited from base classes. Explicit use of DI
     container instances is OPTIONAL on this level, and on no other level.
@@ -237,11 +240,11 @@ rules.
     Names of concrete classes SHOULD be descriptive and readable, but
     otherwise are not restricted. Example:
 
-    -   `interface TranslationCapableInterface` declares `public function translate()`.
+    -   `interface TranslateCapableInterface` declares `public function translate()`.
     -   `interface TranslatorInterface extends TranslationCapableInterface`.
     -   `abstract class AbstractTranslator` declares `protected function _translate()`.
     -   `class Translator extends AbstractTranslator implements TranslatorInterface`
-        declares `public function translate()`, which uses `_translate()`.
+        declares and implements `public function translate()`, which uses `_translate()`.
 
 11. Adequate testing.
 
@@ -252,9 +255,9 @@ rules.
     `<Vendor>\<Package>\FuncTest` and `<Vendor>\<Package>\UnitTest`, where
     `<Vendor>` represents the name of the package's vendor or author, and
     `<Package>` represents the name of the package. Packages SHOULD avoid
-    declaring stub classes. if declared, tuch classes MUST use a base 
+    declaring stub classes. If declared, such classes MUST use a base 
     namespace of the form `<Vendor>\<Package>\TestStub`. Protected methods
-    SHOULD be tested as well as public ones, which is true of any functionality
+    SHOULD be tested as well as public ones, which is true of any functionality.
     Tests for getters and setters SHOULD NOT test protected properties;
     instead, such tests SHOULD test that the values returned
     by the getters are predicted by those set by the setters. Setters and

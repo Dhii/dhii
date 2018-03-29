@@ -17,7 +17,7 @@ rules.
     
 2.  Classes, interfaces, and traits MUST obey the [PSR naming conventions][psr-naming-conventions].
 
-    This allowes the above, collectively called "classes" due to existing
+    This allows the above, collectively called "classes" due to existing
     in the same symbol space and sharing many characteristics, to be
     predictably named, and vice-versa - to have some of their
     characteristics be obvious from the name of the class and concequently

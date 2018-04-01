@@ -258,9 +258,9 @@ rules.
     declaring stub classes. If declared, such classes MUST use a base 
     namespace of the form `<Vendor>\<Package>\TestStub`. Protected methods
     SHOULD be tested as well as public ones, which is true of any functionality.
-    Tests for getters and setters SHOULD NOT test protected properties;
-    instead, such tests SHOULD test that the values returned
-    by the getters are predicted by those set by the setters. Setters and
+    Unit tests for getters and setters SHOULD test protected properties, if this is where values are stored.
+    Functional tests for getters and setters SHOULD test that the values returned
+    by the getters are predicted by those set by the setters. Functionally, setters and
     getters are not guaranteed to read or write to/from any specific location,
     as long as value integrity is preserved. Remember: protected methods
     are an API too, but for descendants instead of external consumers.

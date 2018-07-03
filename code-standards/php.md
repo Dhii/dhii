@@ -63,7 +63,7 @@ rules.
     be it methods, properties, constants etc, MUST have at least the type
     and `@since` version documented. The description MAY be included, and this
     is encouraged. In all instances, be it
-    code or otherwise, the string "\[*next-version*\]" represents the unknown
+    code or otherwise, the string "\[\*next-version\*\]" represents the unknown
     version of the next release. This allows package maintainers to replace such placeholders
     at the time of the release with an actual version number. [Markdown]
     MAY be used in descriptions, and this is also encouraged.

@@ -222,8 +222,8 @@ rules.
         known as "branch" classes. They gradually specialize functionality
         from most generic to more specific changes.
 
-    -   An implementation of a "leaf" class MUST extend at least 1 "branch"
-        class and MUST implement at least 1 interface.
+    -   An implementation of a "leaf" class SHOULD extend at least 1 "branch"
+        class and SHOULD implement at least 1 interface.
 
         This ensures that other implementations can be created without
         having to implement a public API, without explicitly closing
